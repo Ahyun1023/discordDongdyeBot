@@ -30,6 +30,11 @@ client.on('message', msg => {
         var attachment = new Discord.MessageAttachment("./file/txt/쉽게사는 방법.txt")
         msg.channel.send(`${msg.author}, 당신에게 필요한`, attachment);;
     }
+
+    if(msg.content === '임베드'){
+        const embed = new Discord.MessageEmbed().setTitle(0xff0000).setDescription('안녕하세요! 임베드 설명입니다.');
+        msg.channel.send(embed);
+    }
 });
 
 client.on('guildMemberAdd', member =>{
