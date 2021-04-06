@@ -32,4 +32,12 @@ client.on('message', msg => {
     }
 });
 
+client.on('guildMemberAdd', member =>{
+    const channel = member.guild.channels.cache.find(ch => ch.name === '유저-로그');
+    
+    if(!channel) return;
+
+    channel.send(`장난감 서버에 오신 걸 환영합니다, ${member}`);
+});
+
 client.login(global.token);
