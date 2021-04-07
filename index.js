@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
 
-myHook.send('^.^');
+//myHook.send('^.^');
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`); 
@@ -38,6 +38,14 @@ client.on('message', msg => {
         const embed = new Discord.MessageEmbed().setTitle(0xff0000).setDescription('안녕하세요! 임베드 설명입니다.');
         msg.channel.send(embed);
     }
+});
+
+client.fetchWebhook(global.myWebHookId, global.myWebHookToken)
+  .then(webhook => console.log(`${webhook.name} 이름의 웹훅을 가져옵니다`))
+  .catch(console.error);
+
+client.on('messageDelete', msg => {
+    msg.channel.send('메시지 삭제됨.');
 });
 
 client.on('guildMemberAdd', member =>{
