@@ -2,6 +2,9 @@ const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
 const client = new Discord.Client();
 
+const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
+
+myHook.send('^.^');
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`); 
