@@ -44,10 +44,6 @@ client.fetchWebhook(global.myWebHookId, global.myWebHookToken)
   .then(webhook => console.log(`${webhook.name} 이름의 웹훅을 가져옵니다`))
   .catch(console.error);
 
-client.on('messageDelete', msg => {
-    msg.channel.send('메시지 삭제됨.');
-});
-
 client.on('guildMemberAdd', member =>{
     const channel = member.guild.channels.cache.find(ch => ch.name === '유저-로그');
     
