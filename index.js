@@ -4,12 +4,12 @@ const client = new Discord.Client();
 
 const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
 
-//myHook.send('^.^');
-
+//서버 처음 켜졌을 때
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`); 
 });
 
+// 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
     if (msg.content === 'ping') {
          msg.reply('Pong!'); 
@@ -40,10 +40,12 @@ client.on('message', msg => {
     }
 });
 
+// 웹훅을 가져올 때 수행
 client.fetchWebhook(global.myWebHookId, global.myWebHookToken)
   .then(webhook => console.log(`${webhook.name} 이름의 웹훅을 가져옵니다`))
   .catch(console.error);
 
+// 길드 멤버가 추가되어 들어왔을 때
 client.on('guildMemberAdd', member =>{
     const channel = member.guild.channels.cache.find(ch => ch.name === '유저-로그');
     
