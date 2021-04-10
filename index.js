@@ -44,8 +44,12 @@ client.on('message', msg => {
         embed.setTitle
         embed.setTitle(0xff0000).setDescription('안녕하세요! 임베드 설명입니다.');
         embed.setDescription('설명!');
-        //embed.setAuthor('Author', 'Image icon url');
-        //embed.setThumbnail('Tumbnail url');
+        embed.setAuthor('Author', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org');
+        embed.setThumbnail('https://i.imgur.com/wSTFkRM.png');
+        embed.addField('Regular field title', 'Some value here');
+        embed.setTimestamp();
+        embed.setImage('https://i.imgur.com/wSTFkRM.png');
+        embed.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');;
 
         msg.channel.send(embed);
     }
