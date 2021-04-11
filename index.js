@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
 const client = new Discord.Client();
 
-const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
+// 웹훅을 어떻게 쓸지..생각해보겠습니다...
+//const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
 
 //서버 처음 켜졌을 때
 client.on('ready', () => {
