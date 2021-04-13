@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
-const messageAsdf = require('./message.js');
+const messageEventFunc = require('./message.js');
 const client = new Discord.Client();
 
 //const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
@@ -12,7 +12,9 @@ client.on('ready', () => {
 
 // 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
-    messageAsdf.asdf(msg);
+    messageEventFunc.commandEvent(msg);
+    messageEventFunc.msgFileEvent(msg);
+    messageEventFunc.embedEvent(msg);
 });
 
 // 웹훅을 가져올 때 수행
