@@ -1,16 +1,13 @@
 const Discord = require('discord.js');
 
-function asdf(msg) {
-
-    if (msg.content === 'ping') {
-        msg.reply('Pong!');
-    }
-
+function commandEvent(msg) {
     // 프로필
     if (msg.content === '!myProfile') {
         msg.reply(msg.author.displayAvatarURL());
     }
+}
 
+function msgFileEvent(msg){
     // 외부 사이트 이미지 첨부
     if (msg.content === '!rip') {
         var attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
@@ -28,8 +25,9 @@ function asdf(msg) {
         var attachment = new Discord.MessageAttachment("./file/txt/쉽게사는 방법.txt")
         msg.channel.send(`${msg.author}, 당신에게 필요한`, attachment);;
     }
+}
 
-    // 임베드 설명
+function embedEvent(msg){
     if (msg.content === '임베드') {
         // 임베드 생성
         const embed = new Discord.MessageEmbed();
@@ -58,4 +56,6 @@ function asdf(msg) {
     }
 }
 
-module.exports.asdf = asdf;
+module.exports.commandEvent = commandEvent;
+module.exports.msgFileEvent = msgFileEvent;
+module.exports.embedEvent = embedEvent;
