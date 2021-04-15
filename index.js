@@ -14,7 +14,9 @@ client.on('ready', () => {
 client.on('message', msg => {
     messageEventFunc.commandEvent(msg);
     messageEventFunc.msgFileEvent(msg);
-    messageEventFunc.embedEvent(msg);
+    if (msg.content === '임베드') {
+        messageEventFunc.embedEvent(msg);
+    }
 });
 
 // 웹훅을 가져올 때 수행
