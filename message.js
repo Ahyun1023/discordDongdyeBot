@@ -1,33 +1,44 @@
 const Discord = require('discord.js');
 
 function commandEvent(msg) {
+    console.log('commandEvent');
     // 프로필
     if (msg.content === '!myProfile') {
         msg.reply(msg.author.displayAvatarURL());
     }
+
+    return;
 }
 
 function msgFileEvent(msg){
+    console.log('msgFileEvent');
     // 외부 사이트 이미지 첨부
     if (msg.content === '!rip') {
         var attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
         msg.channel.send(`${msg.author},`, attachment);
+
+        return;
     }
 
     // 이미지 첨부
     if (msg.content === '!swordCow') {
         var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
+
+        return;
     }
 
     // 파일 첨부
     if (msg.content === '!easyLife') {
         var attachment = new Discord.MessageAttachment("./file/txt/쉽게사는 방법.txt")
-        msg.channel.send(`${msg.author}, 당신에게 필요한`, attachment);;
+        msg.channel.send(`${msg.author}, 당신에게 필요한`, attachment);
+
+        return;
     }
 }
 
 function embedEvent(msg){
+    console.log('embedEvent');
     // 임베드 생성
     const embed = new Discord.MessageEmbed();
     embed.setTitle(0xff0000).setDescription('안녕하세요! 임베드 설명입니다.');
