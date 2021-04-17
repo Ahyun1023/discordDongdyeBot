@@ -7,7 +7,6 @@ function commandEvent(msg) {
         msg.reply(msg.author.displayAvatarURL());
     }
 
-    return;
 }
 
 function msgFileEvent(msg){
@@ -16,24 +15,24 @@ function msgFileEvent(msg){
     if (msg.content === '!rip') {
         var attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
         msg.channel.send(`${msg.author},`, attachment);
-
-        return;
     }
 
     // 이미지 첨부
     if (msg.content === '!swordCow') {
         var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
-
-        return;
     }
 
     // 파일 첨부
     if (msg.content === '!easyLife') {
         var attachment = new Discord.MessageAttachment("./file/txt/쉽게사는 방법.txt")
         msg.channel.send(`${msg.author}, 당신에게 필요한`, attachment);
+    }
 
-        return;
+    
+    if(msg.content === '!menu'){
+        var attachment = new Discord.MessageAttachment("./file/image/menu.png");
+        msg.channel.send(attachment);
     }
 }
 
