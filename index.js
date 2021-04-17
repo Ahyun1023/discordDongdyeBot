@@ -4,6 +4,7 @@ const messageEventFunc = require('./message.js');
 const client = new Discord.Client();
 
 //const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
+// 까먹을까봐... 음식 같은 거 주문하는 봇을 만들 예정
 
 //서버 처음 켜졌을 때
 client.on('ready', () => {
