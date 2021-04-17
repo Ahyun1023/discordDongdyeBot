@@ -22,13 +22,6 @@ function msgFileEvent(msg){
         var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
     }
-
-    // 파일 첨부
-    if (msg.content === '!easyLife') {
-        var attachment = new Discord.MessageAttachment("./file/txt/쉽게사는 방법.txt")
-        msg.channel.send(`${msg.author}, 당신에게 필요한`, attachment);
-    }
-
     
     if(msg.content === '!menu'){
         var attachment = new Discord.MessageAttachment("./file/image/menu.png");
