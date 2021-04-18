@@ -3,6 +3,8 @@ const global = require('./global/global_variable.json');
 const messageEventFunc = require('./message.js');
 const client = new Discord.Client();
 
+const orderList = [];
+
 //const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
 // 까먹을까봐... 음식 같은 거 주문하는 봇을 만들 예정
 
@@ -13,7 +15,7 @@ client.on('ready', () => {
 
 // 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
-    messageEventFunc.commandEvent(msg);
+    messageEventFunc.commandEvent(msg, orderList);
     messageEventFunc.msgFileEvent(msg);
     if (msg.content === '임베드') {
         messageEventFunc.embedEvent(msg);
