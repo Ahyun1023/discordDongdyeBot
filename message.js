@@ -7,6 +7,11 @@ function commandEvent(msg) {
         msg.reply(msg.author.displayAvatarURL());
     }
 
+    if(msg.content === '!A'){
+        orderList.push('A');
+        msg.channel.send('A메뉴가 추가되었습니다.');
+    }
+
 }
 
 function msgFileEvent(msg){
@@ -23,6 +28,7 @@ function msgFileEvent(msg){
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
     }
     
+    //메뉴판 보여줌
     if(msg.content === '!menu'){
         var attachment = new Discord.MessageAttachment("./file/image/menu.png");
         msg.channel.send(attachment);
