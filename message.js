@@ -24,17 +24,17 @@ function msgFileEvent(msg){
 function embedEvent(msg){
     // 임베드 생성
     const embed = new Discord.MessageEmbed();
-    embed.setTitle(0xff0000).setDescription('안녕하세요! 임베드 설명입니다.');
-    embed.setDescription('설명!');
+    embed.setTitle('안녕하세요! 도움말입니다.').setDescription('명령어는 아래에서 볼 수 있습니다.');
+    embed.setDescription('');
 
     // 링크 이동
-    embed.setAuthor('안녕하세요! 도움말입니다!', 'https://i.imgur.com/wSTFkRM.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
+    //embed.setAuthor('안녕하세요! 도움말입니다!', 'https://i.imgur.com/wSTFkRM.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
 
     // 썸네일 추가
     //embed.setThumbnail('https://i.imgur.com/wSTFkRM.png');
 
     // 필드 추가
-    embed.addField('Regular field title', 'Some value here');
+    embed.addField('HELP', '!');
 
     // 시간 출력
     embed.setTimestamp();
