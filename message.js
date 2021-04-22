@@ -24,16 +24,20 @@ function msgFileEvent(msg){
 function embedEvent(msg){
     // 임베드 생성
     const embed = new Discord.MessageEmbed();
-    embed.setTitle('안녕하세요! 도움말입니다.').setDescription('명령어는 아래에서 볼 수 있습니다.');
-    embed.setDescription('');
-
     // 링크 이동
-    //embed.setAuthor('안녕하세요! 도움말입니다!', 'https://i.imgur.com/wSTFkRM.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
+    embed.setAuthor('안녕하세요! 도움말입니다!', 'https://i.imgur.com/7ua6qm7.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
+
+    //embed.setTitle('안녕하세요! 도움말입니다.').setDescription('명령어는 아래에서 볼 수 있습니다.');
+    embed.setDescription('명령어는 아래에서 볼 수 있습니다.');
 
     // 썸네일 추가
-    //embed.setThumbnail('https://i.imgur.com/wSTFkRM.png');
+    embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
 
     // 필드 추가
+    embed.addField('COMMANDS', '!');
+    embed.addField('MUSIC', '!');
+    embed.addField('EMOJI', '!');
+    embed.addField('GUILD', '!');
     embed.addField('HELP', '!');
 
     // 시간 출력
