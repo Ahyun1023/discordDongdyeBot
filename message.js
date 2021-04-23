@@ -21,13 +21,12 @@ function msgFileEvent(msg){
     }
 }
 
-function embedEvent(msg){
+function helpEmbedEvent(msg){
     // 임베드 생성
     const embed = new Discord.MessageEmbed();
     // 링크 이동
     embed.setAuthor('안녕하세요! 도움말입니다!', 'https://i.imgur.com/7ua6qm7.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
 
-    //embed.setTitle('안녕하세요! 도움말입니다.').setDescription('명령어는 아래에서 볼 수 있습니다.');
     embed.setDescription('명령어는 아래에서 볼 수 있습니다.');
 
     // 썸네일 추가
@@ -47,11 +46,11 @@ function embedEvent(msg){
     embed.setImage('https://i.imgur.com/wSTFkRMs.png');
 
     // 하단
-    embed.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+    embed.setFooter('Some footer text here', 'https://i.imgur.com/7ua6qm7.png');
 
     msg.channel.send(embed);
 }
 
 module.exports.commandEvent = commandEvent;
 module.exports.msgFileEvent = msgFileEvent;
-module.exports.embedEvent = embedEvent;
+module.exports.helpEmbedEvent = helpEmbedEvent;
