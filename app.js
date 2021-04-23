@@ -17,8 +17,8 @@ client.on('ready', () => {
 client.on('message', msg => {
     messageEventFunc.commandEvent(msg, orderList);
     messageEventFunc.msgFileEvent(msg);
-    if (msg.content === '임베드') {
-        messageEventFunc.embedEvent(msg);
+    if (msg.content === '!help') {
+        messageEventFunc.helpEmbedEvent(msg);
     }
 });
 
