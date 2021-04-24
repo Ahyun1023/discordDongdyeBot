@@ -10,6 +10,11 @@ function commandEvent(msg) {
         // 길드 내에 있는 멤버 이름 출력
         console.log(Array.from(msg.member.guild.members));
     }
+
+    if(msg.content === '!!'){
+            console.log(msg.createdTimestamp);
+
+    }
 }
 
 function msgFileEvent(msg){
