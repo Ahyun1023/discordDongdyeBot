@@ -5,6 +5,11 @@ function commandEvent(msg) {
     if (msg.content === '!myProfile') {
         msg.reply(msg.author.displayAvatarURL());
     }
+
+    if(msg.content === '!!!'){
+        // 길드 내에 있는 멤버 이름 출력
+        console.log(Array.from(msg.member.guild.members));
+    }
 }
 
 function msgFileEvent(msg){
