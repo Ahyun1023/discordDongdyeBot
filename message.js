@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const client = new Discord.Client();
+const discordTTS=require("discord-tts");
 
 function commandEvent(msg) {
     // 프로필
@@ -13,7 +15,23 @@ function commandEvent(msg) {
 
     if(msg.content === '!!'){
             console.log(msg.createdTimestamp);
+    }
 
+    if(msg.content === 'say 123'){
+        /*const broadcast = client.voice.createBroadcast();
+        var channelId = msg.member.voice.channelID;
+        var channel = client.channels.cache.get(channelId);
+
+        broadcast.play(discordTTS.getVoiceStream("test 123"));
+            const dispatcher = connection.play(broadcast);
+        channel.join().then(connection => {
+            broadcast.play(discordTTS.getVoiceStream("test 123"));
+            const dispatcher = connection.play(broadcast);
+        });*/
+
+        msg.channel.send("A text to speech message from a bot.", {
+            tts: true
+           })
     }
 }
 
