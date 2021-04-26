@@ -1,6 +1,4 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const discordTTS=require("discord-tts");
 
 function commandEvent(msg) {
     // 프로필
@@ -8,31 +6,30 @@ function commandEvent(msg) {
         msg.reply(msg.author.displayAvatarURL());
     }
 
-    if(msg.content === '!!!'){
+    else if(msg.content === '!!!'){
         // 길드 내에 있는 멤버 이름 출력
         console.log(Array.from(msg.member.guild.members));
     }
 
-    if(msg.content === '!!'){
+    else if(msg.content === '!!'){
             console.log(msg.createdTimestamp);
     }
 
-    if(msg.content === 'say 123'){
-        /*const broadcast = client.voice.createBroadcast();
-        var channelId = msg.member.voice.channelID;
-        var channel = client.channels.cache.get(channelId);
-
-        broadcast.play(discordTTS.getVoiceStream("test 123"));
-            const dispatcher = connection.play(broadcast);
-        channel.join().then(connection => {
-            broadcast.play(discordTTS.getVoiceStream("test 123"));
-            const dispatcher = connection.play(broadcast);
-        });*/
-
-        msg.channel.send("A text to speech message from a bot.", {
+    else if(msg.content === 'say 123'){
+        msg.channel.send("안녕하세요 김잼민입니다.", {
             tts: true
-           })
+        })
     }
+
+    else if (msg.content === '!help') {
+        messageEventFunc.helpEmbedEvent(msg);
+    }
+
+    else {
+        exceptionEmbedEvent(msg);
+    }
+
+    messageEventFunc.msgFileEvent(msg);
 }
 
 function msgFileEvent(msg){
@@ -47,6 +44,24 @@ function msgFileEvent(msg){
         var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
     }
+}
+
+function exceptionEmbedEvent(msg){
+    const embed = new Discord.MessageEmbed();
+    // 링크 이동
+    embed.setTitle('존재하지 않는 명령어입니다.');
+    embed.setDescription('모든 명령어를 보려면 [!help]를 입력해주세요!');
+
+    // 썸네일 추가
+    embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
+
+    // 시간 출력
+    embed.setTimestamp();
+
+    // 하단
+    embed.setFooter('Some footer text here', 'https://i.imgur.com/7ua6qm7.png');
+
+    msg.channel.send(embed);
 }
 
 function helpEmbedEvent(msg){
@@ -82,3 +97,4 @@ function helpEmbedEvent(msg){
 module.exports.commandEvent = commandEvent;
 module.exports.msgFileEvent = msgFileEvent;
 module.exports.helpEmbedEvent = helpEmbedEvent;
+module.exports.exceptionEmbedEvent = exceptionEmbedEvent;
