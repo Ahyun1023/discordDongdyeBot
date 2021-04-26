@@ -3,8 +3,6 @@ const global = require('./global/global_variable.json');
 const messageEventFunc = require('./message.js');
 const client = new Discord.Client();
 
-const orderList = [];
-
 //const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
 // 주문 봇도 별로인 거 같아서 그냥 채널 관리하는 봇으로 변경.
 
@@ -15,8 +13,7 @@ client.on('ready', () => {
 
 // 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
-    messageEventFunc.commandEvent(msg, orderList);
-    messageEventFunc.msgFileEvent(msg);
+    messageEventFunc.commandEvent(msg);
     if (msg.content === '!help') {
         messageEventFunc.helpEmbedEvent(msg);
     }
