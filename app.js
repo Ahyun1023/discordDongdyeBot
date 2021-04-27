@@ -13,9 +13,9 @@ client.on('ready', () => {
 
 // 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
-    messageEventFunc.commandEvent(msg);
-    if (msg.content === '!help') {
-        messageEventFunc.helpEmbedEvent(msg);
+    console.log(msg.content.indexOf('!'));
+    if(msg.content.indexOf('!') == 0){
+        messageEventFunc.commandEvent(msg);
     }
 });
 
