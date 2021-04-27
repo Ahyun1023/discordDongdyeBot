@@ -16,20 +16,20 @@ function commandEvent(msg) {
     }
 
     else if(msg.content === 'say 123'){
-        msg.channel.send("안녕하세요 김잼민입니다.", {
+        msg.channel.send("안녕하세요.", {
             tts: true
         })
     }
 
     else if (msg.content === '!help') {
-        messageEventFunc.helpEmbedEvent(msg);
+        helpEmbedEvent(msg);
     }
 
     else {
         exceptionEmbedEvent(msg);
     }
-
-    messageEventFunc.msgFileEvent(msg);
+    //msgFileEvent(msg);
+    return;
 }
 
 function msgFileEvent(msg){
