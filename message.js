@@ -25,24 +25,20 @@ function commandEvent(msg) {
         helpEmbedEvent(msg);
     }
 
-    else {
-        exceptionEmbedEvent(msg);
-    }
-    //msgFileEvent(msg);
-    return;
-}
+    // 이미지 첨부
+    else if (msg.content === '!swordCow') {
+        var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
+        msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
+    } 
 
-function msgFileEvent(msg){
     // 외부 사이트 이미지 첨부
-    if (msg.content === '!rip') {
+    else if (msg.content === '!rip') {
         var attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
         msg.channel.send(`${msg.author},`, attachment);
     }
 
-    // 이미지 첨부
-    if (msg.content === '!swordCow') {
-        var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
-        msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
+    else {
+        exceptionEmbedEvent(msg);
     }
 }
 
@@ -95,6 +91,5 @@ function helpEmbedEvent(msg){
 }
 
 module.exports.commandEvent = commandEvent;
-module.exports.msgFileEvent = msgFileEvent;
 module.exports.helpEmbedEvent = helpEmbedEvent;
 module.exports.exceptionEmbedEvent = exceptionEmbedEvent;
