@@ -13,7 +13,6 @@ client.on('ready', () => {
 
 // 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
-    console.log(msg.content.indexOf('!'));
     if(msg.content.indexOf('!') == 0){
         messageEventFunc.commandEvent(msg);
     }
