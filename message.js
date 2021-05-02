@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const global = require('./global/global_variable.json');
 
 function commandEvent(msg) {
     // 프로필
@@ -15,24 +16,24 @@ function commandEvent(msg) {
             console.log(msg.createdTimestamp);
     }
 
-    else if(msg.content === 'say 123'){
+    else if(msg.content === global.prefix + 'say 123'){
         msg.channel.send("안녕하세요.", {
             tts: true
         })
     }
 
-    else if (msg.content === '!help') {
+    else if (msg.content === global.prefix + 'help') {
         helpEmbedEvent(msg);
     }
 
     // 이미지 첨부
-    else if (msg.content === '!swordCow') {
+    else if (msg.content === global.prefix + 'swordCow') {
         var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
     } 
 
     // 외부 사이트 이미지 첨부
-    else if (msg.content === '!rip') {
+    else if (msg.content === global.prefix + 'rip') {
         var attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
         msg.channel.send(`${msg.author},`, attachment);
     }
