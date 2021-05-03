@@ -7,12 +7,12 @@ function commandEvent(msg) {
         msg.reply(msg.author.displayAvatarURL());
     }
 
-    else if(msg.content === '!!!'){
+    /*else if(msg.content === '!!!'){
         // 길드 내에 있는 멤버 이름 출력
         console.log(Array.from(msg.member.guild.members));
-    }
+    }*/
 
-    else if(msg.content === '!!'){
+    else if(msg.content === global.prefix + 'nowTime'){
             console.log(msg.createdTimestamp);
     }
 
