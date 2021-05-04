@@ -13,11 +13,12 @@ function commandEvent(msg) {
     }*/
 
     else if(msg.content === global.prefix + 'nowTime'){
-            console.log(msg.createdTimestamp);
-    }
-
-    else if(msg.content === global.prefix + 'say 123'){
-        msg.channel.send("안녕하세요.", {
+        let nowDate = new Date()
+        let year = nowDate.getFullYear();
+        let month = nowDate.getMonth() + 1;
+        let date = nowDate.getDate();
+        let day = nowDate.getDay();
+        msg.channel.send(year + "년 " + month + "월 " + date + "일 " + day + "요일 입니다.", {
             tts: true
         })
     }
