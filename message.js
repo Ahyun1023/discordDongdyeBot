@@ -13,12 +13,14 @@ function commandEvent(msg) {
     }*/
 
     else if(msg.content === global.prefix + 'nowTime'){
-        let nowDate = new Date()
+        let week = ['일', '월', '화', '수', '목', '금', '토'];
+        let nowDate = new Date();
         let year = nowDate.getFullYear();
         let month = nowDate.getMonth() + 1;
         let date = nowDate.getDate();
         let day = nowDate.getDay();
-        msg.channel.send(year + "년 " + month + "월 " + date + "일 " + day + "요일 입니다.", {
+
+        msg.channel.send(year + "년 " + month + "월 " + date + "일 " + week[day] + "요일 입니다.", {
             tts: true
         })
     }
