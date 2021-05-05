@@ -3,9 +3,6 @@ const global = require('./global/global_variable.json');
 const messageEventFunc = require('./message.js');
 const client = new Discord.Client();
 
-//const myHook = new Discord.WebhookClient(global.myWebHookId, global.myWebHookToken);
-// 주문 봇도 별로인 거 같아서 그냥 채널 관리하는 봇으로 변경.
-
 //서버 처음 켜졌을 때
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`); 
