@@ -25,6 +25,21 @@ function commandEvent(msg) {
         })
     }
 
+    else if(msg.content === global.prefix + 'weather'){
+        let city = 'daegu';
+        let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"d908c72d10fc473bdd772fe3bfbeac43";
+        $.ajax({
+            url: apiURI,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function(resp) {
+                console.log(resp);
+
+            }
+        })
+    }
+
     else if (msg.content === global.prefix + 'help') {
         helpEmbedEvent(msg);
     }
