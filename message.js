@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
+const path = require('path');
+const fetch = require('node-fetch');
 
 function commandEvent(msg) {
     // 프로필
@@ -27,17 +29,32 @@ function commandEvent(msg) {
 
     else if(msg.content === global.prefix + 'weather'){
         let city = 'daegu';
+
         let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"d908c72d10fc473bdd772fe3bfbeac43";
-        $.ajax({
+
+        fetch(apiURI).then((response) => {
+            console.log(response);
+            response.json();
+        });
+
+        /*$.ajax({
             url: apiURI,
             dataType: "json",
             type: "GET",
             async: "false",
             success: function(resp) {
                 console.log(resp);
-
+                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+                console.log("현재습도 : "+ resp.main.humidity);
+                console.log("날씨 : "+ resp.weather[0].main );
+                console.log("상세날씨설명 : "+ resp.weather[0].description );
+                console.log("날씨 이미지 : "+ resp.weather[0].icon );
+                console.log("바람   : "+ resp.wind.speed );
+                console.log("나라   : "+ resp.sys.country );
+                console.log("도시이름  : "+ resp.name );
+                console.log("구름  : "+ (resp.clouds.all) +"%" );
             }
-        })
+        })*/
     }
 
     else if (msg.content === global.prefix + 'help') {
