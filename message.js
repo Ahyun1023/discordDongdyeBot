@@ -30,7 +30,7 @@ function commandEvent(msg) {
     else if(msg.content === global.prefix + 'weather'){
         let city = 'daegu';
 
-        let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"d908c72d10fc473bdd772fe3bfbeac43";
+        let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
 
         fetch(apiURI).then((response) => {
             console.log(response);
