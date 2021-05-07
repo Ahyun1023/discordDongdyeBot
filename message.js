@@ -36,8 +36,8 @@ function commandEvent(msg) {
         fetch(apiURI).then((response) => {
             var result = response.json();
 
+            console.log(response);
             console.log(result);
-            console.log(result.weather[0].main);
         });
 
         /*$.ajax({
