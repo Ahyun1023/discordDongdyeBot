@@ -31,10 +31,13 @@ function commandEvent(msg) {
         let city = 'daegu';
 
         let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
+        console.log(apiURI);
 
         fetch(apiURI).then((response) => {
-            console.log(response);
-            response.json();
+            var result = response.json();
+
+            console.log(result);
+            console.log(result.weather[0].main);
         });
 
         /*$.ajax({
