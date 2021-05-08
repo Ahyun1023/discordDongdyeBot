@@ -36,6 +36,16 @@ function commandEvent(msg) {
         .then((result) =>{
             console.log(result);
             console.log("현재 온도: " + (result.main.temp - 273.15));
+
+            let nowTemp = (result.main.temp - 273.15);
+            let nowHumid = result.main.humidity;
+            let weather = result.weather[0].main;
+            let wind = result.wind.speed;
+            let cloud = result.clouds.all;
+
+            msg.channel.send('현재 온도는 ' + nowTemp + '°C 입니다.', {
+                tts: true
+            })
         })
 
         /*$.ajax({
