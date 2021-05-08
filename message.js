@@ -31,14 +31,12 @@ function commandEvent(msg) {
         let city = 'daegu';
 
         let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
-        console.log(apiURI);
 
-        fetch(apiURI).then((response) => {
-            var result = response.json();
-
-            console.log(response);
+        fetch(apiURI).then(response => response.json())
+        .then((result) =>{
             console.log(result);
-        });
+            console.log("현재 온도: " + (result.main.temp - 273.15));
+        })
 
         /*$.ajax({
             url: apiURI,
