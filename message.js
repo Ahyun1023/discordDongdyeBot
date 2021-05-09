@@ -35,37 +35,15 @@ function commandEvent(msg) {
         fetch(apiURI).then(response => response.json())
         .then((result) =>{
             console.log(result);
-            console.log("현재 온도: " + (result.main.temp - 273.15));
 
-            let nowTemp = (result.main.temp - 273.15);
-            let nowHumid = result.main.humidity;
-            let weather = result.weather[0].main;
-            let wind = result.wind.speed;
-            let cloud = result.clouds.all;
 
-            msg.channel.send('현재 온도는 ' + nowTemp + '°C 입니다.', {
+            /*msg.channel.send('현재 온도는 ' + nowTemp + '°C 입니다.', {
                 tts: true
-            })
-        })
+            })*/
 
-        /*$.ajax({
-            url: apiURI,
-            dataType: "json",
-            type: "GET",
-            async: "false",
-            success: function(resp) {
-                console.log(resp);
-                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-                console.log("현재습도 : "+ resp.main.humidity);
-                console.log("날씨 : "+ resp.weather[0].main );
-                console.log("상세날씨설명 : "+ resp.weather[0].description );
-                console.log("날씨 이미지 : "+ resp.weather[0].icon );
-                console.log("바람   : "+ resp.wind.speed );
-                console.log("나라   : "+ resp.sys.country );
-                console.log("도시이름  : "+ resp.name );
-                console.log("구름  : "+ (resp.clouds.all) +"%" );
-            }
-        })*/
+            weatherEvent(msg, result);
+        })
+        
     }
 
     else if (msg.content === global.prefix + 'help') {
@@ -105,6 +83,55 @@ function exceptionEmbedEvent(msg){
     embed.setFooter('Some footer text here', 'https://i.imgur.com/7ua6qm7.png');
 
     msg.channel.send(embed);
+}
+
+function weatherEvent(msg, result){
+    const embed = new Discord.MessageEmbed();
+
+    let nowTemp = (result.main.temp - 273.15),
+        nowHumid = result.main.humidity,
+        weather = result.weather[0].main,
+        wind = result.wind.speed,
+        cloud = result.clouds.all;
+
+    // 링크 이동
+    embed.setAuthor('현재 온도는 ' + nowTemp + '°C 입니다.', 'https://i.imgur.com/7ua6qm7.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
+
+    // 썸네일 추가
+    embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
+
+    // 필드 추가
+    embed.addField('COMMANDS', '!');
+
+    // 시간 출력
+    embed.setTimestamp();
+
+    // 이미지 추가
+    embed.setImage('https://i.imgur.com/wSTFkRMs.png');
+
+    // 하단
+    embed.setFooter('Some footer text here', 'https://i.imgur.com/7ua6qm7.png');
+
+    msg.channel.send(embed);
+
+        /*$.ajax({
+            url: apiURI,
+            dataType: "json",
+            type: "GET",
+            async: "false",
+            success: function(resp) {
+                console.log(resp);
+                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+                console.log("현재습도 : "+ resp.main.humidity);
+                console.log("날씨 : "+ resp.weather[0].main );
+                console.log("상세날씨설명 : "+ resp.weather[0].description );
+                console.log("날씨 이미지 : "+ resp.weather[0].icon );
+                console.log("바람   : "+ resp.wind.speed );
+                console.log("나라   : "+ resp.sys.country );
+                console.log("도시이름  : "+ resp.name );
+                console.log("구름  : "+ (resp.clouds.all) +"%" );
+            }
+        })*/
 }
 
 function helpEmbedEvent(msg){
