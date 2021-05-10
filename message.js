@@ -93,15 +93,14 @@ function weatherEvent(msg, result){
         weather = result.weather[0].main,
         wind = result.wind.speed,
         cloud = result.clouds.all;
+        icon = result.weather[0].icon;
 
     // 링크 이동
     embed.setAuthor('현재 온도는 ' + nowTemp + '°C 입니다.', 'https://i.imgur.com/7ua6qm7.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
-
-    // 썸네일 추가
-    embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
+    embed.setThumbnail('http://openweathermap.org/img/w/' + icon + '.png');
 
     // 필드 추가
-    embed.addField('COMMANDS', '!');
+    embed.addField('풍속', cloud + 'm/s');
 
     // 시간 출력
     embed.setTimestamp();
