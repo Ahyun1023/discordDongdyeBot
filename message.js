@@ -95,8 +95,7 @@ function weatherEvent(msg, result){
         cloud = result.clouds.all;
         icon = result.weather[0].icon;
 
-    // 링크 이동
-    embed.setAuthor('현재 온도는 ' + nowTemp + '°C 입니다.', 'https://i.imgur.com/7ua6qm7.png', 'https://github.com/Ahyun1023/discordDongdyeBot');
+    embed.setAuthor('현재 온도는 ' + nowTemp + '°C 입니다.', 'https://i.imgur.com/7ua6qm7.png', 'https://www.weather.go.kr/w/index.do');
     embed.setThumbnail('http://openweathermap.org/img/w/' + icon + '.png');
 
     // 필드 추가
@@ -112,7 +111,6 @@ function weatherEvent(msg, result){
     embed.setFooter('Some footer text here', 'https://i.imgur.com/7ua6qm7.png');
 
     msg.channel.send(embed);
-
         /*$.ajax({
             url: apiURI,
             dataType: "json",
