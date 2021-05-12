@@ -36,11 +36,6 @@ function commandEvent(msg) {
         .then((result) =>{
             console.log(result);
 
-
-            /*msg.channel.send('현재 온도는 ' + nowTemp + '°C 입니다.', {
-                tts: true
-            })*/
-
             weatherEvent(msg, result);
         })
         
@@ -103,36 +98,14 @@ function weatherEvent(msg, result){
     embed.addField('풍속', wind + 'm/s');
     embed.addField('구름', cloud + '%');
     embed.addField('습도', nowHumid + '%');
-    
 
-    // 시간 출력
     embed.setTimestamp();
 
-    // 이미지 추가
     embed.setImage('https://i.imgur.com/wSTFkRMs.png');
 
-    // 하단
     embed.setFooter('오늘의 날씨');
 
     msg.channel.send(embed);
-        /*$.ajax({
-            url: apiURI,
-            dataType: "json",
-            type: "GET",
-            async: "false",
-            success: function(resp) {
-                console.log(resp);
-                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-                console.log("현재습도 : "+ resp.main.humidity);
-                console.log("날씨 : "+ resp.weather[0].main );
-                console.log("상세날씨설명 : "+ resp.weather[0].description );
-                console.log("날씨 이미지 : "+ resp.weather[0].icon );
-                console.log("바람   : "+ resp.wind.speed );
-                console.log("나라   : "+ resp.sys.country );
-                console.log("도시이름  : "+ resp.name );
-                console.log("구름  : "+ (resp.clouds.all) +"%" );
-            }
-        })*/
 }
 
 function helpEmbedEvent(msg){
@@ -147,7 +120,7 @@ function helpEmbedEvent(msg){
     embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
 
     // 필드 추가
-    embed.addField('COMMANDS', '!');
+    embed.addField('COMMANDS', '!weather');
     embed.addField('MUSIC', '!');
     embed.addField('EMOJI', '!');
     embed.addField('GUILD', '!');
