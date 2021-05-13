@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
-const path = require('path');
+const mysql = require('mysql');
 const fetch = require('node-fetch');
 
 function commandEvent(msg) {
