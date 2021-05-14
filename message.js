@@ -1,7 +1,15 @@
 const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
-const mysql = require('mysql');
 const fetch = require('node-fetch');
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host : "localhost",
+    port : 3306,
+    user : "root",
+    password : global.dbpw,
+    database : "discord"
+});
 
 function commandEvent(msg) {
     // 프로필
