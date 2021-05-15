@@ -55,14 +55,24 @@ function commandEvent(msg) {
 
     // 이미지 첨부
     else if (msg.content === global.prefix + 'swordCow') {
-        var attachment = new Discord.MessageAttachment("./file/image/검문소.png");
+        let attachment = new Discord.MessageAttachment("./file/image/검문소.png");
         msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
     } 
 
     // 외부 사이트 이미지 첨부
     else if (msg.content === global.prefix + 'rip') {
-        var attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
+        let attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
         msg.channel.send(`${msg.author},`, attachment);
+    } 
+    
+    // 
+    else if(msg.content = global.prefix + ''){
+        let query = "";
+        let param;
+
+        connection.query(query, param, function(err, result){
+                
+        });
     }
 
     else {
