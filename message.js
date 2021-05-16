@@ -66,13 +66,16 @@ function commandEvent(msg) {
     } 
     
     // 
-    else if(msg.content = global.prefix + ''){
-        let query = "";
+    else if(msg.content = global.prefix + 'music'){
+        let dispatcher = connection.playFile('./music');
+        dispatcher.on("end", end => {});
+
+        /*let query = "";
         let param;
 
         connection.query(query, param, function(err, result){
-                
-        });
+            
+        });*/
     }
 
     else {
