@@ -67,7 +67,7 @@ function commandEvent(msg) {
     
     // 
     else if(msg.content = global.prefix + 'music'){
-        let dispatcher = connection.playFile('./music');
+        let dispatcher = connection.playFile('./music.mp3');
         dispatcher.on("end", end => {});
 
         /*let query = "";
