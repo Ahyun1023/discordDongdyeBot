@@ -3,13 +3,13 @@ const global = require('./global/global_variable.json');
 const fetch = require('node-fetch');
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
     host : "localhost",
     port : 3306,
     user : "root",
     password : global.dbpw,
     database : "discord"
-});
+});*/
 
 function commandEvent(msg) {
     // 프로필
@@ -63,19 +63,6 @@ function commandEvent(msg) {
     else if (msg.content === global.prefix + 'rip') {
         let attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
         msg.channel.send(`${msg.author},`, attachment);
-    } 
-    
-    // 
-    else if(msg.content = global.prefix + 'music'){
-        let dispatcher = connection.playFile('./music.mp3');
-        dispatcher.on("end", end => {});
-
-        /*let query = "";
-        let param;
-
-        connection.query(query, param, function(err, result){
-            
-        });*/
     }
 
     else {
