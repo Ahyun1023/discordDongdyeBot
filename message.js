@@ -2,14 +2,15 @@ const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
 const fetch = require('node-fetch');
 const mysql = require('mysql');
+const ip = require('ip');
 
-/*const connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host : "localhost",
     port : 3306,
     user : "root",
     password : global.dbpw,
     database : "discord"
-});*/
+});
 
 function commandEvent(msg) {
     // 프로필
@@ -36,6 +37,10 @@ function commandEvent(msg) {
     }
 
     else if(msg.content === global.prefix + 'weather'){
+        var ip_addr = ip.address();
+
+        console.log(ip_addr);
+
         let city = 'daegu';
 
         let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
