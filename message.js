@@ -37,10 +37,15 @@ function commandEvent(msg) {
     }
 
     else if(msg.content.indexOf(global.prefix + 'weather') != -1){
-        if(msg.content.indexOf(global.prefix + 'weather-') != -1){
+        if(msg.content.indexOf('-') != -1){
             let city = msg.content.substring(9, msg.content.length);
+            
+            if(city.length <= 0){
+                let errMsg = '정확한 도시 이름을 입력해주세요!';
+                searchWeatherFailEvent(msg, errMsg);
 
-            //let city = 'daegu';
+                return;
+            }
 
             let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
 
@@ -51,11 +56,13 @@ function commandEvent(msg) {
                 if(result.cod != '404'){
                     weatherEvent(msg, result);
                 } else {
-                    msg.channel.send('정확한 도시 이름을 입력해주세요!');
+                    let errMsg = '정확한 도시 이름을 입력해주세요!';
+                    searchWeatherFailEvent(msg, errMsg);
                 }
             })
         } else {
-
+            let errMsg = '정확한 명령어를 입력해주세요!';
+            searchWeatherFailEvent(msg, errMsg);
         }
         
     }
@@ -123,6 +130,18 @@ function weatherEvent(msg, result){
     embed.setImage('https://i.imgur.com/wSTFkRMs.png');
 
     embed.setFooter('오늘의 날씨');
+
+    msg.channel.send(embed);
+}
+
+function searchWeatherFailEvent(msg, errMsg){
+    const embed = new Discord.MessageEmbed();;
+    
+    embed.setAuthor(errMsg);
+
+    embed.addField('"!weather-[도시이름]" 형태로 작성해주세요.', '예시: !weather-daegu, !weather-seoul');
+
+    embed.setTimestamp();
 
     msg.channel.send(embed);
 }
