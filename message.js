@@ -36,21 +36,27 @@ function commandEvent(msg) {
         })
     }
 
-    else if(msg.content === global.prefix + 'weather'){
-        var ip_addr = ip.address();
+    else if(msg.content.indexOf(global.prefix + 'weather') != -1){
+        if(msg.content.indexOf(global.prefix + 'weather-') != -1){
+            let city = msg.content.substring(9, msg.content.length);
 
-        console.log(ip_addr);
+            //let city = 'daegu';
 
-        let city = 'daegu';
+            let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
 
-        let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
+            fetch(apiURI).then(response => response.json())
+            .then((result) =>{
+                console.log(result);
 
-        fetch(apiURI).then(response => response.json())
-        .then((result) =>{
-            console.log(result);
+                if(result.cod != '404'){
+                    weatherEvent(msg, result);
+                } else {
+                    msg.channel.send('정확한 도시 이름을 입력해주세요!');
+                }
+            })
+        } else {
 
-            weatherEvent(msg, result);
-        })
+        }
         
     }
 
