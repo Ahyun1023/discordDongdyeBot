@@ -39,21 +39,13 @@ function commandEvent(msg) {
     else if(msg.content.indexOf(global.prefix + 'weather') != -1){
         if(msg.content.indexOf('-') != -1){
             let city = msg.content.substring(9, msg.content.length);
-            
-            if(city.length <= 0){
-                let errMsg = '정확한 도시 이름을 입력해주세요!';
-                searchWeatherFailEvent(msg, errMsg);
-
-                return;
-            }
-
             let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
 
             fetch(apiURI).then(response => response.json())
             .then((result) =>{
                 console.log(result);
 
-                if(result.cod != '404'){
+                if(result.cod != '404' && result.cod != '400'){
                     weatherEvent(msg, result);
                 } else {
                     let errMsg = '정확한 도시 이름을 입력해주세요!';
@@ -139,9 +131,7 @@ function searchWeatherFailEvent(msg, errMsg){
     
     embed.setAuthor(errMsg);
 
-    embed.addField('"!weather-[도시이름]" 형태로 작성해주세요.', '예시: !weather-daegu, !weather-seoul');
-
-    embed.setTimestamp();
+    embed.addField('" !weather-[도시이름] " 형태로 작성해주세요.', '예시: !weather-daegu, !weather-seoul');
 
     msg.channel.send(embed);
 }
