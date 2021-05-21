@@ -101,7 +101,7 @@ function exceptionEmbedEvent(msg){
 function weatherEvent(msg, result){
     const embed = new Discord.MessageEmbed();
 
-    let nowTemp = (result.main.temp - 273.15),
+    let nowTemp = Math.round(result.main.temp - 273.15),
         nowHumid = result.main.humidity,
         weather = result.weather[0].main,
         wind = result.wind.speed,
