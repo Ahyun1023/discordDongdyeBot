@@ -38,6 +38,7 @@ function commandEvent(msg) {
 
     else if(msg.content.indexOf(global.prefix + 'weather') != -1){
         if(msg.content.indexOf('-') != -1){
+            //msg.content.split('-')로 앞 뒤 나눌 수도 있긴 함
             let city = msg.content.substring(9, msg.content.length);
             let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
 
@@ -61,6 +62,11 @@ function commandEvent(msg) {
 
     else if (msg.content === global.prefix + 'help') {
         helpEmbedEvent(msg);
+    }
+
+    else if(msg.content === global.prefix + 'clean'){
+        msg.delete();
+        msg.channel.send('메시지 삭제됨');
     }
 
     // 이미지 첨부
@@ -131,7 +137,7 @@ function searchWeatherFailEvent(msg, errMsg){
     
     embed.setAuthor(errMsg);
 
-    embed.addField('" !weather-[도시이름] " 형태로 작성해주세요.', '예시: !weather-daegu, !weather-seoul');
+    embed.addField('" !weather-[도시영어이름] " 형태로 작성해주세요.', '예시: !weather-daegu, !weather-seoul');
 
     msg.channel.send(embed);
 }
