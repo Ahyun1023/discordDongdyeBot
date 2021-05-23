@@ -154,11 +154,11 @@ function helpEmbedEvent(msg){
     embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
 
     // 필드 추가
-    embed.addField('COMMANDS', '!weather');
+    embed.addField('INFO', '!weather');
     embed.addField('MUSIC', '!');
     embed.addField('EMOJI', '!');
     embed.addField('GUILD', '!');
-    embed.addField('HELP', '!');
+    embed.addField('CHAT', '!clean');
 
     // 시간 출력
     embed.setTimestamp();
