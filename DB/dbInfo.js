@@ -1,4 +1,4 @@
-const global = require('./global/global_variable.json');
+const global = require('../global/global_variable.json');
 
 module.exports = (()=> {
     return {
