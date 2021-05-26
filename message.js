@@ -39,7 +39,8 @@ function commandEvent(msg) {
                 console.log(result);
 
                 if(result.cod != '404' && result.cod != '400'){
-                    var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = " + city;
+                    var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + encodeURI(city) + "'";
+                    console.log(sql);
                     connection.query(sql, (err, result)=>{
                         if(err){
                             console.log(err);
@@ -48,6 +49,7 @@ function commandEvent(msg) {
                             weatherEvent(msg, result);
                         }
                     })
+                    //weatherEvent(msg, result);
                 } else {
                     let errMsg = '정확한 도시 이름을 입력해주세요!';
                     searchWeatherFailEvent(msg, errMsg);
