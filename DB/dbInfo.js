@@ -7,7 +7,7 @@ module.exports = (()=> {
             port: 3306,
             user: 'root',
             password: global.dbpw,
-            database: 'toymarket'
+            database: 'discord'
         },
 
         real: { //실 서버용

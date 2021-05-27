@@ -37,16 +37,16 @@ function commandEvent(msg) {
             fetch(apiURI).then(response => response.json())
             .then((result) =>{
                 console.log(result);
-
                 if(result.cod != '404' && result.cod != '400'){
                     var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + encodeURI(city) + "'";
                     console.log(sql);
-                    connection.query(sql, (err, result)=>{
+                    connection.query(sql, (err,dbResult)=>{
                         if(err){
                             console.log(err);
                             msg.channel.send("알 수 없는 에러가 발생했습니다.");
                         } else {
-                            weatherEvent(msg, result);
+                            console.log(dbResult);
+                            //weatherEvent(msg, result);
                         }
                     })
                     //weatherEvent(msg, result);
