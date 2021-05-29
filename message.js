@@ -43,14 +43,14 @@ function commandEvent(msg) {
             //msg.content.split('-')로 앞 뒤 나눌 수도 있긴 함
             let city = msg.content.substring(9, msg.content.length);
 
-            var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + city + "'";
-            connection.query(sql, (err,dbResult)=>{
+            //var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + city + "'";
+            connection.query('SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = ?;', city, (err,results)=>{
                 if(err){
                     console.log(err);
                     msg.channel.send("알 수 없는 에러가 발생했습니다.");
                 } else {
-                    console.log(dbResult);
-                    console.log(dbResult.EN_CITY_NM);
+                    console.log(results);
+                    console.log(results[0].EN_CITY_NM);
                     //weatherEvent(msg, result);
 
                     let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
