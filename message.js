@@ -2,7 +2,17 @@ const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
 const fetch = require('node-fetch');
 const mysql_dbc = require('./DB/db')();
-const connection = mysql_dbc.init();
+const mysql = require('mysql');
+//const connection = mysql_dbc.init();
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    //password: global.dbpw,
+    password: 'fkrtmgkswks',
+    database: 'discord'
+})
 
 function commandEvent(msg) {
     // 프로필
@@ -32,28 +42,33 @@ function commandEvent(msg) {
         if(msg.content.indexOf('-') != -1){
             //msg.content.split('-')로 앞 뒤 나눌 수도 있긴 함
             let city = msg.content.substring(9, msg.content.length);
-            let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
 
-            fetch(apiURI).then(response => response.json())
-            .then((result) =>{
-                console.log(result);
-                if(result.cod != '404' && result.cod != '400'){
-                    var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + encodeURI(city) + "'";
-                    connection.query(sql, (err,dbResult)=>{
-                        if(err){
-                            console.log(err);
-                            msg.channel.send("알 수 없는 에러가 발생했습니다.");
-                        } else {
-                            console.log(dbResult);
-                            //weatherEvent(msg, result);
-                        }
-                    })
-                    weatherEvent(msg, result);
+            var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + city + "'";
+            connection.query(sql, (err,dbResult)=>{
+                if(err){
+                    console.log(err);
+                    msg.channel.send("알 수 없는 에러가 발생했습니다.");
                 } else {
-                    let errMsg = '정확한 도시 이름을 입력해주세요!';
-                    searchWeatherFailEvent(msg, errMsg);
-                }
-            })
+                    console.log(dbResult);
+                    console.log(dbResult.EN_CITY_NM);
+                    //weatherEvent(msg, result);
+
+                    let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
+
+                    /*fetch(apiURI).then(response => response.json())
+                    .then((result) =>{
+                        console.log(result);
+                        if(result.cod != '404' && result.cod != '400'){
+                   
+                        weatherEvent(msg, result);
+                    } else {
+                        let errMsg = '정확한 도시 이름을 입력해주세요!';
+                        searchWeatherFailEvent(msg, errMsg);
+                    }
+                })*/
+            }
+        })
+            
         } else {
             let errMsg = '정확한 명령어를 입력해주세요!';
             searchWeatherFailEvent(msg, errMsg);

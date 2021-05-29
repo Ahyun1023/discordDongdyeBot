@@ -1,5 +1,5 @@
-var mysql = require('mysql');
-var config = require('./dbInfo').local;
+const mysql = require('mysql');
+const config = require('./dbInfo').local;
 
 module.exports = ()=>{
     return {
