@@ -49,23 +49,19 @@ function commandEvent(msg) {
                     console.log(err);
                     msg.channel.send("알 수 없는 에러가 발생했습니다.");
                 } else {
-                    console.log(results);
-                    console.log(results[0].EN_CITY_NM);
-                    //weatherEvent(msg, result);
+                    let apiURI = "http://api.openweathermap.org/data/2.5/weather?q=" + results[0].EN_CITY_NM + "&appid=" + global.weatherApiKey;
 
-                    let apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+global.weatherApiKey;
-
-                    /*fetch(apiURI).then(response => response.json())
+                    fetch(apiURI).then(response => response.json())
                     .then((result) =>{
                         console.log(result);
                         if(result.cod != '404' && result.cod != '400'){
                    
-                        weatherEvent(msg, result);
+                        weatherEvent(msg, result, city);
                     } else {
                         let errMsg = '정확한 도시 이름을 입력해주세요!';
                         searchWeatherFailEvent(msg, errMsg);
                     }
-                })*/
+                })
             }
         })
             
@@ -120,18 +116,17 @@ function exceptionEmbedEvent(msg){
     msg.channel.send(embed);
 }
 
-function weatherEvent(msg, result){
+function weatherEvent(msg, result, city){
     const embed = new Discord.MessageEmbed();
 
     let nowTemp = Math.round(result.main.temp - 273.15),
         nowHumid = result.main.humidity,
         weather = result.weather[0].main,
         wind = result.wind.speed,
-        cityName = result.name,
         cloud = result.clouds.all;
         icon = result.weather[0].icon;
 
-    embed.setAuthor(cityName + '의 현재 온도는 ' + nowTemp + '°C 입니다.', 'https://i.imgur.com/7ua6qm7.png', 'https://www.weather.go.kr/w/index.do');
+    embed.setAuthor(city + '의 현재 온도는 ' + nowTemp + '°C 입니다.', 'https://i.imgur.com/7ua6qm7.png', 'https://www.weather.go.kr/w/index.do');
     embed.setThumbnail('http://openweathermap.org/img/w/' + icon + '.png');
 
     embed.addField('날씨', weather);
