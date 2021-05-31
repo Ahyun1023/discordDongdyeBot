@@ -2,17 +2,7 @@ const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
 const fetch = require('node-fetch');
 const mysql_dbc = require('./DB/db')();
-const mysql = require('mysql');
-//const connection = mysql_dbc.init();
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    //password: global.dbpw,
-    password: 'fkrtmgkswks',
-    database: 'discord'
-})
+const connection = mysql_dbc.init();
 
 function commandEvent(msg) {
     // 프로필
@@ -43,7 +33,6 @@ function commandEvent(msg) {
             //msg.content.split('-')로 앞 뒤 나눌 수도 있긴 함
             let city = msg.content.substring(9, msg.content.length);
 
-            //var sql = "SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = '" + city + "'";
             connection.query('SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = ?;', city, (err,results)=>{
                 if(err){
                     console.log(err);
