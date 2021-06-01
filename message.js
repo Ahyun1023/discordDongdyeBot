@@ -1,8 +1,11 @@
 const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
 const fetch = require('node-fetch');
+const discordYoutube = require('discord-youtube-api');
 const mysql_dbc = require('./DB/db')();
 const connection = mysql_dbc.init();
+
+const youtube = new discordYoutube(global.youtubeApiKey);
 
 function commandEvent(msg) {
     // 프로필
@@ -53,12 +56,15 @@ function commandEvent(msg) {
                 })
             }
         })
-            
         } else {
             let errMsg = '정확한 명령어를 입력해주세요!';
             searchWeatherFailEvent(msg, errMsg);
         }
         
+    }
+
+    else if(msg.content === global.prefix + 'nowTime'){
+
     }
 
     else if (msg.content === global.prefix + 'help') {
@@ -154,7 +160,7 @@ function helpEmbedEvent(msg){
     embed.setThumbnail('https://i.imgur.com/7ua6qm7.png');
 
     // 필드 추가
-    embed.addField('INFO', '!weather');
+    embed.addField('INFO', '!weather, !nowTime');
     embed.addField('MUSIC', '!');
     embed.addField('EMOJI', '!');
     embed.addField('GUILD', '!');
