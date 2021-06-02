@@ -33,7 +33,6 @@ function commandEvent(msg) {
 
     else if(msg.content.indexOf(global.prefix + 'weather') != -1){
         if(msg.content.indexOf('-') != -1){
-            //msg.content.split('-')로 앞 뒤 나눌 수도 있긴 함
             let city = msg.content.substring(9, msg.content.length);
 
             connection.query('SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = ?;', city, (err,results)=>{

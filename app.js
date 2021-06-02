@@ -17,7 +17,7 @@ client.on('message', msg => {
 
 // 웹훅을 가져올 때 수행
 client.fetchWebhook(global.myWebHookId, global.myWebHookToken)
-  .then(webhook => console.log(`${webhook.name} 이름의 웹훅을 가져옵니다`))
+  .then(webhook => console.log(`${webhook.name}`))
   .catch(console.error);
 
 // 길드 멤버가 추가되어 들어왔을 때
