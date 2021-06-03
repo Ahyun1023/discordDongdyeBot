@@ -62,6 +62,7 @@ function commandEvent(msg) {
         
     }
 
+    /* 비속어 단속 */
     else if(msg.content === global.prefix + 'nowTime'){
 
     }
