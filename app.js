@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const global = require('./global/global_variable.json');
-const messageEventFunc = require('./message.js');
+const messageModule = require('./message.js');
 const client = new Discord.Client();
 
 //서버 처음 켜졌을 때
@@ -11,7 +11,9 @@ client.on('ready', () => {
 // 사용자가 특정 메시지를 날렸을 때
 client.on('message', msg => {
     if(msg.content.indexOf('!') == 0){
-        messageEventFunc.commandEvent(msg);
+        messageModule.commandEvent(msg);
+    } else {
+        //만약 비속어 사용 시 필터링
     }
 });
 
