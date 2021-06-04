@@ -8,89 +8,91 @@ const connection = mysql_dbc.init();
 const youtube = new discordYoutube(global.youtubeApiKey);
 
 function commandEvent(msg) {
-    // 프로필
-    if (msg.content === '!myProfile') {
-        msg.reply(msg.author.displayAvatarURL());
-    }
-
-    /*else if(msg.content === '!!!'){
-        // 길드 내에 있는 멤버 이름 출력
-        console.log(Array.from(msg.member.guild.members));
-    }*/
-
-    else if(msg.content === global.prefix + 'nowTime'){
-        let week = ['일', '월', '화', '수', '목', '금', '토'];
-        let nowDate = new Date();
-        let year = nowDate.getFullYear();
-        let month = nowDate.getMonth() + 1;
-        let date = nowDate.getDate();
-        let day = nowDate.getDay();
-
-        msg.channel.send(year + "년 " + month + "월 " + date + "일 " + week[day] + "요일 입니다.", {
-            tts: true
-        })
-    }
-
-    else if(msg.content.indexOf(global.prefix + 'weather') != -1){
-        if(msg.content.indexOf('-') != -1){
-            let city = msg.content.substring(9, msg.content.length);
-
-            connection.query('SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = ?;', city, (err,results)=>{
-                if(err){
-                    console.log(err);
-                    msg.channel.send("알 수 없는 에러가 발생했습니다.");
-                } else {
-                    let apiURI = "http://api.openweathermap.org/data/2.5/weather?q=" + results[0].EN_CITY_NM + "&appid=" + global.weatherApiKey;
-
-                    fetch(apiURI).then(response => response.json())
-                    .then((result) =>{
-                        console.log(result);
-                        if(result.cod != '404' && result.cod != '400'){
-                   
-                        weatherEvent(msg, result, city);
-                    } else {
-                        let errMsg = '정확한 도시 이름을 입력해주세요!';
-                        searchWeatherFailEvent(msg, errMsg);
-                    }
-                })
-            }
-        })
-        } else {
-            let errMsg = '정확한 명령어를 입력해주세요!';
-            searchWeatherFailEvent(msg, errMsg);
+    if(msg.content.indexOf(global.prefix) != -1){
+        // 프로필
+        if (msg.content === '!myProfile') {
+            msg.reply(msg.author.displayAvatarURL());
         }
-        
-    }
 
-    /* 비속어 단속 */
-    else if(msg.content === global.prefix + 'nowTime'){
+        /*else if(msg.content === '!!!'){
+            // 길드 내에 있는 멤버 이름 출력
+            console.log(Array.from(msg.member.guild.members));
+        }*/
 
-    }
+        /* 현재 시간 출력 */
+        else if(msg.content === global.prefix + 'nowTime'){
+            nowTimeComm(msg);
+        }
 
-    else if (msg.content === global.prefix + 'help') {
-        helpEmbedEvent(msg);
-    }
+        else if(msg.content.indexOf(global.prefix + 'weather') != -1){
+            if(msg.content.indexOf('-') != -1){
+                let city = msg.content.substring(9, msg.content.length);
 
-    else if(msg.content === global.prefix + 'clean'){
-        msg.delete();
-        msg.channel.send('메시지 삭제됨');
-    }
+                connection.query('SELECT EN_CITY_NM FROM CITY WHERE KO_CITY_NM = ?;', city, (err,results)=>{
+                    if(err){
+                        console.log(err);
+                        msg.channel.send("알 수 없는 에러가 발생했습니다.");
+                    } else {
+                        let apiURI = "http://api.openweathermap.org/data/2.5/weather?q=" + results[0].EN_CITY_NM + "&appid=" + global.weatherApiKey;
 
-    // 이미지 첨부
-    else if (msg.content === global.prefix + 'swordCow') {
-        let attachment = new Discord.MessageAttachment("./file/image/검문소.png");
-        msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
-    } 
+                        fetch(apiURI).then(response => response.json())
+                        .then((result) =>{
+                            console.log(result);
+                            if(result.cod != '404' && result.cod != '400'){
+                            
+                            weatherEvent(msg, result, city);
+                        } else {
+                            let errMsg = '정확한 도시 이름을 입력해주세요!';
+                            searchWeatherFailEvent(msg, errMsg);
+                        }
+                    })
+                }
+            })
+            } else {
+                let errMsg = '정확한 명령어를 입력해주세요!';
+                searchWeatherFailEvent(msg, errMsg);
+            }
 
-    // 외부 사이트 이미지 첨부
-    else if (msg.content === global.prefix + 'rip') {
-        let attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
-        msg.channel.send(`${msg.author},`, attachment);
-    }
+        }
 
-    else {
+        else if (msg.content === global.prefix + 'help') {
+            helpEmbedEvent(msg);
+        }
+
+        else if(msg.content === global.prefix + 'clean'){
+            msg.delete();
+            msg.channel.send('메시지 삭제됨');
+        }
+
+        // 이미지 첨부
+        else if (msg.content === global.prefix + 'swordCow') {
+            let attachment = new Discord.MessageAttachment("./file/image/검문소.png");
+            msg.channel.send(`${msg.author}, 당신을 지켜줄...`, attachment);
+        } 
+
+        // 외부 사이트 이미지 첨부
+        else if (msg.content === global.prefix + 'rip') {
+            let attachment = new Discord.MessageAttachment("https://i.imgur.com/w3duR07.png");
+            msg.channel.send(`${msg.author},`, attachment);
+        }
+
+    } else {
         exceptionEmbedEvent(msg);
     }
+}
+
+function nowTimeComm(msg){
+    let week = ['일', '월', '화', '수', '목', '금', '토'];
+    let nowDate = new Date();
+    let year = nowDate.getFullYear();
+    let month = nowDate.getMonth() + 1;
+    let date = nowDate.getDate();
+    let day = nowDate.getDay();
+
+    msg.channel.send(year + "년 " + month + "월 " + date + "일 " + week[day] + "요일 입니다.", {
+        tts: true
+    })
+
 }
 
 function exceptionEmbedEvent(msg){
