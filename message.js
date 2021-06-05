@@ -80,7 +80,6 @@ function weatherComm(msg){
 
                 fetch(apiURI).then(response => response.json())
                 .then((result) =>{
-                    console.log(result);
                     if(result.cod != '404' && result.cod != '400'){
                     
                     weatherEvent(msg, result, city);
