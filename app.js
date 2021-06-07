@@ -13,7 +13,17 @@ client.on('message', msg => {
     if(msg.content.indexOf('!') == 0){
         messageModule.commandEvent(msg);
     } else {
-        connection.query('SELECT KO_ABUSE FROM ABUSE WHERE KO_ABUSE = ?;', msg.content, (err,results)=>{
+        let ko_test = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+        let eng_test = /[a-zA-Z]/;
+        let sql;
+        
+        if(ko_test.test(msg.content) == true){
+            sql = 'SELECT KO_ABUSE FROM ABUSE WHERE KO_ABUSE = ?;';
+        } else if(eng_test.test(msg.content) == true){
+            sql = 'SELECT KO_ABUSE FROM ABUSE WHERE KO_ABUSE = ?;';
+        }
+
+        connection.query(sql, msg.content, (err,results)=>{
             if(err){
                 console.log(err);
             } else {
