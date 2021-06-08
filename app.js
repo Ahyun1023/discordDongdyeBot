@@ -18,9 +18,9 @@ client.on('message', msg => {
         let sql;
         
         if(ko_test.test(msg.content) == true){
-            sql = 'SELECT KO_ABUSE FROM ABUSE WHERE KO_ABUSE = ?;';
+            sql = 'SELECT LOCATE(?) FROM ABUSE WHERE KO_ABUSE = ?;';
         } else if(eng_test.test(msg.content) == true){
-            sql = 'SELECT KO_ABUSE FROM ABUSE WHERE KO_ABUSE = ?;';
+            sql = 'SELECT ABUSE FROM ABUSE WHERE EN_ABUSE = ?;';
         }
 
         connection.query(sql, msg.content, (err,results)=>{
